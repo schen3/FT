@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, ImageBackground, View } from 'react-native';
 import FU from './src/uploader';
 import SelectLang from './src/selectLang';
 
@@ -53,61 +53,63 @@ export default function App() {
 
   return (
     <GoogleOAuthProvider clientId={myClientId}>
-      <View style={styles.container}>
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static">
-            <Toolbar>
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-              >
-                {/* <MenuIcon /> */}
-              </IconButton>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                File Translate
-              </Typography>
+      <View style={styles.container} >
+        <ImageBackground source={require('/assets/images/bgFT.png')} resizeMode="cover" style={styles.image}>
+          <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="static" style={{ background: '#2E3B55' }}>
+              <Toolbar>
+                <IconButton
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                  sx={{ mr: 2 }}
+                >
+                  {/* <MenuIcon /> */}
+                </IconButton>
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                  File Translate
+                </Typography>
 
 
-              {userInfo ?
-                <div>{userInfo.name}</div>
-                : <Button color="inherit"><GoogleLogin
-                  onSuccess={credentialResponse => {
-                    const detail = parseJwt(credentialResponse.credential);
-                    console.log('userDetail', detail);
-                    // setUserInfo({ name: detail.name, email: detail.email })
-                  }}
-                  onError={() => {
-                    console.log('Login Failed');
-                  }}
-                  useOneTap
-                /> </Button>}
+                {userInfo ?
+                  <div>{userInfo.name}</div>
+                  : <Button color="inherit"><GoogleLogin
+                    onSuccess={credentialResponse => {
+                      const detail = parseJwt(credentialResponse.credential);
+                      console.log('userDetail', detail);
+                      // setUserInfo({ name: detail.name, email: detail.email })
+                    }}
+                    onError={() => {
+                      console.log('Login Failed');
+                    }}
+                    useOneTap
+                  /> </Button>}
 
-              <Button
-                color="inherit"
-                onClick={() => {
-                  console.log('google logout')
-                  googleLogout();
-                  // setUserInfo(null);
-                }}>
-                Logout
-              </Button>
+                <Button
+                  color="inherit"
+                  onClick={() => {
+                    console.log('google logout')
+                    googleLogout();
+                    // setUserInfo(null);
+                  }}>
+                  Logout
+                </Button>
 
-            </Toolbar>
-          </AppBar>
-          {/* <Text style={styles.baseText}></Text> */}
-          <div style={styles.selectArea}>
-            <SelectLang collection={languageConfig.fileFrom} handleOnSelect={(e) => { langFromAndTo(languageConfig.fileFrom.label, e) }} />
-            <SelectLang collection={languageConfig.fileTo} handleOnSelect={(e) => { langFromAndTo(languageConfig.fileTo.label, e) }} />
-          </div>
-          <FU></FU>
-          <StatusBar style="auto" />
-        </Box>
+              </Toolbar>
+            </AppBar>
+            {/* <Text style={styles.baseText}></Text> */}
+            <div style={styles.selectArea}>
+              <SelectLang collection={languageConfig.fileFrom} handleOnSelect={(e) => { langFromAndTo(languageConfig.fileFrom.label, e) }} />
+              <SelectLang collection={languageConfig.fileTo} handleOnSelect={(e) => { langFromAndTo(languageConfig.fileTo.label, e) }} />
+            </div>
+            <FU></FU>
+            <StatusBar style="auto" />
+          </Box>
+        </ImageBackground>
 
       </View >
-    </GoogleOAuthProvider>
+    </GoogleOAuthProvider >
 
 
   );
@@ -117,7 +119,9 @@ const styles = StyleSheet.create({
   container: {
     fontFamily: 'system-ui',
     width: '100%',
-    backgroundColor:'gray'
+  },
+  image: {
+    height: '100%'
   },
   baseText: {
     fontSize: 30
