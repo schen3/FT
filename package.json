@@ -7,9 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "costmize": "expo customize:web",
-    "build": "npx expo export:web",
-    "buildAZ": "npm run build:azure"
+    "costmize": "expo customize:web"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
