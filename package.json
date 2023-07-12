@@ -9,7 +9,7 @@
     "web": "expo start --web",
     "costmize": "expo customize:web",
     "build": "npx expo export:web",
-    "buildAZ":"npm run build:azure"
+    "buildAZ": "npm run build:azure"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -19,7 +19,7 @@
     "@mui/material": "^5.13.7",
     "@react-oauth/google": "^0.11.0",
     "@syncfusion/ej2-pdfviewer": "^22.1.37",
-    "expo": "~48.0.18",
+    "expo": "^49.0.2",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
