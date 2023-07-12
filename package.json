@@ -16,7 +16,6 @@
     "@expo/webpack-config": "^18.0.1",
     "@mui/icons-material": "^5.13.7",
     "@mui/material": "^5.13.7",
-    "@react-native-community/masked-view": "^0.1.11",
     "@react-oauth/google": "^0.11.0",
     "@syncfusion/ej2-pdfviewer": "^22.1.37",
     "expo": "~48.0.18",
