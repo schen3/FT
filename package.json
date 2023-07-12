@@ -8,7 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "costmize": "expo customize:web",
-    "build":"expo build:web --no-pwa"
+    "build":"npx expo export:web"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
