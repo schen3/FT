@@ -116,13 +116,14 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     fontFamily: 'system-ui',
-    width: '100%'
+    width: '100%',
+    backgroundColor:'gray'
   },
   baseText: {
     fontSize: 30
   },
   selectArea: {
-    display: 'grid',
+    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
