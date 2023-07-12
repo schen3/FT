@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     container: {
         width: 544,
         height: 240,
-        border: 'dashed 1px #d7dadf',
+        border: 'dashed 1px #2E3B55',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Roboto',
         fontSize: '16px',
         fontWeight: '500',
-        color: '#99abbe',
+        color: '#2E3B55',
     },
     selectFileButton: {
         marginLeft: '40%',
