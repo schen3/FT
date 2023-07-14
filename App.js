@@ -74,26 +74,29 @@ export default function App() {
 
                 {userInfo ?
                   <div>{userInfo.name}</div>
-                  : <Button color="inherit"><GoogleLogin
-                    onSuccess={credentialResponse => {
-                      const detail = parseJwt(credentialResponse.credential);
-                      console.log('userDetail', detail);
-                      // setUserInfo({ name: detail.name, email: detail.email })
-                    }}
-                    onError={() => {
-                      console.log('Login Failed');
-                    }}
-                    useOneTap
-                  /> </Button>}
+                  : <Button color="inherit">
+                      <GoogleLogin
+                        onSuccess={credentialResponse => {
+                          const detail = parseJwt(credentialResponse.credential);
+                          console.log('userDetail', detail);
+                          setUserInfo({ name: detail.name, email: detail.email })
+                        }}
+                        onError={() => {
+                          console.log('Login Failed');
+                        }}
+                        useOneTap
+                      />
+                   </Button>}
 
                 <Button
                   color="inherit"
                   onClick={() => {
                     console.log('google logout')
                     googleLogout();
-                    // setUserInfo(null);
-                  }}>
-                  Logout(v1)
+                    setUserInfo(null);
+                  }}
+                  Hi, {userInfo.name}
+                  Logout(v3)
                 </Button>
 
               </Toolbar>
