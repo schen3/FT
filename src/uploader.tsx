@@ -225,8 +225,9 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        marginLeft: '25%',
-		marginRight:'25%'
+//        marginLeft: '25%',
+//		marginRight:'25%'
+        margin: 'auto'
     },
     uploadButtonContainer: {
         width: 60,
