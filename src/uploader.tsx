@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
         marginLeft: '30%',
     },
     container: {
-        maxWidth: 550,
+        maxWidth: 750,
         height: 240,
         border: 'dashed 1px #2E3B55',
         display: 'flex',
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
         height: '45px',
         width: '120px',
         textTransform: 'capitalize',
-        fontSize: '15px'
+        fontSize: '15px',
          
     },
     uploadButtons: {

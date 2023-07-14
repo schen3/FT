@@ -55,7 +55,7 @@ export default function App() {
     <GoogleOAuthProvider clientId={myClientId}>
       <View style={styles.container} >
         <ImageBackground source={require('/assets/images/bgFT.png')} resizeMode="cover" style={styles.image}>
-          <Box sx={{ flexGrow: 1 }}>
+          <Box sx={{ flexGrow: 1}}>
             <AppBar position="static" style={{ background: 'black', opacity:'90%' }}>
               <Toolbar>
                 <IconButton
@@ -96,7 +96,7 @@ export default function App() {
                     setUserInfo(null);
                   }}
                   >
-                  Logoutv3
+                  Logout<pre>  v3</pre>
                 </Button>
 
               </Toolbar>
@@ -106,9 +106,9 @@ export default function App() {
               <SelectLang collection={languageConfig.fileFrom} handleOnSelect={(e) => { langFromAndTo(languageConfig.fileFrom.label, e) }} />
               <SelectLang collection={languageConfig.fileTo} handleOnSelect={(e) => { langFromAndTo(languageConfig.fileTo.label, e) }} />
             </div>
-            <FU></FU>
+            <div style={{padding: '10px 30px'}}><FU></FU></div>
             <StatusBar style="auto" />
-          </Box>
+          </Box>          
         </ImageBackground>
 
       </View >

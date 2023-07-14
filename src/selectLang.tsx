@@ -22,6 +22,7 @@ const SelectLang = ({ collection, handleOnSelect }) => {
             selectedSize={20}
             optionsSize={18}
             fullWidth={true}
+            style={{backgroundColor:'red'}}
         /></div>
         ;
 };
