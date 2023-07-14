@@ -1,0 +1,8 @@
+flask
+PyPDF2
+io
+os
+openai
+time
+datetime
+ 
