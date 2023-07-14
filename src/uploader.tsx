@@ -219,14 +219,12 @@ const styles = StyleSheet.create({
         marginLeft: '30%',
     },
     container: {
-        maxWidth: 544,
+        maxWidth: 550,
         height: 240,
         border: 'dashed 1px #2E3B55',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-//        marginLeft: '25%',
-//		marginRight:'25%'
         margin: 'auto'
     },
     uploadButtonContainer: {
@@ -235,27 +233,24 @@ const styles = StyleSheet.create({
         marginLeft: '43%'
     },
     text: {
-        marginLeft: '25%',
-		marginRight: '25%',
-		textAlign: 'center',
-        width: '191px',
+        margin: 'auto',
         height: '18px',
         fontSize: '16px',
         fontWeight: '500',
         color: '#2E3B55',
     },
     selectFileButton: {
-        marginLeft: '25%',
-		marginRight: '25%',
+        margin: 'auto',
 		alignSelf: 'center',
         cursor: 'pointer',
         color: '#0071e9',
         backgroundColor: 'white',
         border: 'solid 1px #0071ef',
         height: '45px',
-        width: '100px',
+        width: '120px',
         textTransform: 'capitalize',
-        fontSize: '15px'
+        fontSize: '15px'.
+         
     },
     uploadButtons: {
         display: 'flex',
