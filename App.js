@@ -93,7 +93,7 @@ export default function App() {
                     googleLogout();
                     // setUserInfo(null);
                   }}>
-                  Logout(v2)
+                  Logout(v1)
                 </Button>
 
               </Toolbar>

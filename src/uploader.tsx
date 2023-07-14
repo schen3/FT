@@ -113,7 +113,7 @@ const UploadFile: FC<IUploadFile> = ({ handleFile }) => {
         reader.onload = (e) => {
             const data = reader.result;
             const content = JSON.stringify(data);
-            console.log('Upload txt Json', JSON.parse(content))
+            console.log('Upload PDF Json', JSON.parse(content))
         };
         reader.onerror = () => {
             console.log('Error')
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
         height: '45px',
         width: '120px',
         textTransform: 'capitalize',
-        fontSize: '15px'.
+        fontSize: '15px'
          
     },
     uploadButtons: {
