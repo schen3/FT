@@ -225,7 +225,12 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        margin: 'auto'
+        margin: 'auto',
+        backgroundColor: 'rgba(255,255,255, 0.5)',
+//        color:'transparent',
+//        opacity:'40%',
+//        filter:invert(1),
+        borderRadius: 'var(--muidocs-shap-borderRadius, 10px)'
     },
     uploadButtonContainer: {
         width: 60,

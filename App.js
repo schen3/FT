@@ -56,7 +56,7 @@ export default function App() {
       <View style={styles.container} >
         <ImageBackground source={require('/assets/images/bgFT.png')} resizeMode="cover" style={styles.image}>
           <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" style={{ background: '#2E3B55' }}>
+            <AppBar position="static" style={{ background: 'black', opacity:'90%' }}>
               <Toolbar>
                 <IconButton
                   size="large"
@@ -95,8 +95,8 @@ export default function App() {
                     googleLogout();
                     setUserInfo(null);
                   }}
-                  Hi, {userInfo.name}
-                  Logout(v3)
+                  >
+                  Logoutv3
                 </Button>
 
               </Toolbar>
