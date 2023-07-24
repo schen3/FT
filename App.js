@@ -91,9 +91,9 @@ export default function App() {
                 <Button
                   color="inherit"
                   onClick={() => {
-                    console.log('google logout')
-                    googleLogout();
-                    setUserInfo(null);
+                    // console.log('google logout')
+                    // googleLogout();
+                    // setUserInfo(null);
                   }}
                   >
                   Logout<pre>    v4</pre>
