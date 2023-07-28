@@ -3,6 +3,7 @@ import { StyleSheet, Text } from 'react-native';
 import { Document, Page } from 'react-pdf';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import axios from 'axios';
 
 /**
  * RefObject type interface
@@ -82,9 +83,7 @@ const UploadFile: FC<IUploadFile> = ({ handleFile }) => {
 
     const onUpload = (fileUploaded, isDragging: boolean) => {
         console.log('fileUploaded', fileUploaded);
-        setStatus('START')
         setIsDragging(isDragging);
-
         //SetFileDetail
         const formatFileSize = `${(fileUploaded.size / 1048576).toFixed(2)} MB`;
         const fileName = fileUploaded.name.trim();
@@ -92,15 +91,14 @@ const UploadFile: FC<IUploadFile> = ({ handleFile }) => {
         setFileSize(formatFileSize);
         const fileExtension = fileName.split(".").pop().toLowerCase();
         // Making call
-        setStatus('START');
-        setTimeout(() => {
-            if (fileExtension === 'txt') {
-                TxtToJson(fileUploaded)
-            } else if (fileExtension === 'pdf') {
-                PdfToJson(fileUploaded)
-            }
 
-        }, 1000);
+        if (fileExtension === 'txt') {
+            TxtToJson(fileUploaded)
+        } else if (fileExtension === 'pdf') {
+            // PdfToJson(fileUploaded)
+            TxtToJson(fileUploaded)
+        }
+
 
     }
 
@@ -110,6 +108,8 @@ const UploadFile: FC<IUploadFile> = ({ handleFile }) => {
 
     const PdfToJson = (uploadFile) => {
         const reader: FileReader = new FileReader();
+        const formData = new FormData();
+        formData.append('file', uploadFile);
         reader.onload = (e) => {
             const data = reader.result;
             const content = JSON.stringify(data);
@@ -125,16 +125,47 @@ const UploadFile: FC<IUploadFile> = ({ handleFile }) => {
 
     const TxtToJson = (uploadFile) => {
         const reader: FileReader = new FileReader();
-        reader.onload = (e) => {
-            const data = reader.result;
-            const content = JSON.stringify(data);
-            console.log('Upload txt Json', JSON.parse(content))
+        const url = 'https://jolly-tree-16f0e16d9ad14d3fb6f6c77cf1698621.azurewebsites.net/upload'
+        const url2 = 'http://127.0.0.1:5000/upload';
+
+        const formData = new FormData();
+        formData.append('file', uploadFile);
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data',
+            },
         };
-        reader.onerror = () => {
-            console.log('Error')
-        };
-        reader.readAsBinaryString(uploadFile);
-        setStatus('COMPLETED');
+        setStatus('STARTED');
+        axios.post(url2, formData, config).then((response) => {
+            console.log(response.data);
+            setStatus('COMPLETED');
+        }).catch(
+            err => console.log('getUploadRep', err)
+        )
+        // reader.onload = (e) => {
+        //     const data = reader.result;
+        //     const content = JSON.stringify(data);
+        //     console.log('Upload txt Json', JSON.parse(content))
+        //     setStatus('STARTED');
+
+        //     axios.post(url2, uploadFile, {
+        //         headers: {
+        //             'Content-Type': 'multipart/form-data'
+        //         }
+        //     }).then(
+        //         response => {
+        //             setStatus('COMPLETED');
+        //             console.log('getUploadRep', response)
+        //         }
+        //     ).catch(
+        //         err => console.log('getUploadRep', err)
+        //     )
+        // };
+        // reader.onerror = () => {
+        //     console.log('Error')
+        // };
+        // reader.readAsBinaryString(uploadFile);
+
     }
 
     // Set and remove eventListeners during mount and unmount
@@ -164,14 +195,14 @@ const UploadFile: FC<IUploadFile> = ({ handleFile }) => {
             {status === 'COMPLETED' &&
                 <div style={styles.center}>
                     <Text>Successful! </Text><br />
-                    <Text>FileName.XLSM</Text>
-                    <button
+                    <Text>{fileName}</Text>
+                    {/* <button
                         data-testid={'uploadTestBtn'}
                         style={styles.btn}
                         onClick={() => onDownload('fileName')}
                     >
                         Download
-                    </button>
+                    </button> */}
                 </div>
             }
             {status === 'UPLOADING' &&
@@ -227,9 +258,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         margin: 'auto',
         backgroundColor: 'rgba(255,255,255, 0.5)',
-//        color:'transparent',
-//        opacity:'40%',
-//        filter:invert(1),
+        //        color:'transparent',
+        //        opacity:'40%',
+        //        filter:invert(1),
         borderRadius: 'var(--muidocs-shap-borderRadius, 10px)'
     },
     uploadButtonContainer: {
@@ -246,7 +277,7 @@ const styles = StyleSheet.create({
     },
     selectFileButton: {
         margin: 'auto',
-		alignSelf: 'center',
+        alignSelf: 'center',
         cursor: 'pointer',
         color: '#0071e9',
         backgroundColor: 'white',
@@ -255,7 +286,7 @@ const styles = StyleSheet.create({
         width: '120px',
         textTransform: 'capitalize',
         fontSize: '15px',
-         
+
     },
     uploadButtons: {
         display: 'flex',

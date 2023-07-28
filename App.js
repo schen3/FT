@@ -96,7 +96,7 @@ export default function App() {
                     setUserInfo(null);
                   }}
                   >
-                  Logout<pre>    v4</pre>
+                  Logout<pre>    v5</pre>
                 </Button>
 
               </Toolbar>
