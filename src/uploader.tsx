@@ -103,7 +103,7 @@ const UploadFile: FC<IUploadFile> = ({ handleFile }) => {
     }
 
     const onDownload = (params: string) => {
-        console.log('downloading')
+        console.log('downloading',)
     }
 
     const PdfToJson = (uploadFile) => {
@@ -127,6 +127,7 @@ const UploadFile: FC<IUploadFile> = ({ handleFile }) => {
         const reader: FileReader = new FileReader();
         const url = 'https://jolly-tree-16f0e16d9ad14d3fb6f6c77cf1698621.azurewebsites.net/upload'
         const url2 = 'http://127.0.0.1:5000/upload';
+        const url3 = 'http://127.0.0.1:5000/health';
 
         const formData = new FormData();
         formData.append('file', uploadFile);
@@ -136,8 +137,28 @@ const UploadFile: FC<IUploadFile> = ({ handleFile }) => {
             },
         };
         setStatus('STARTED');
-        axios.post(url2, formData, config).then((response) => {
+        axios.post(url, formData, config).then((response) => {
             console.log(response.data);
+       
+
+            const jsonStr = JSON.stringify(response.data, null, 2);
+
+            // Create a blob from the string
+            const blob = new Blob([jsonStr], { type: 'text/plain;charset=utf-8' });
+        
+            // Create a URL for the blob
+            const url = URL.createObjectURL(blob);
+        
+            // Create a link and programmatically click it to initiate download
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'data.txt';
+            link.click();
+        
+            // Afterwards, revoke the object URL to avoid memory leaks
+            URL.revokeObjectURL(url);
+
+
             setStatus('COMPLETED');
         }).catch(
             err => console.log('getUploadRep', err)
@@ -196,13 +217,13 @@ const UploadFile: FC<IUploadFile> = ({ handleFile }) => {
                 <div style={styles.center}>
                     <Text>Successful! </Text><br />
                     <Text>{fileName}</Text>
-                    {/* <button
+                    <button
                         data-testid={'uploadTestBtn'}
                         style={styles.btn}
-                        onClick={() => onDownload('fileName')}
+                        onClick={() => onDownload(fileName)}
                     >
                         Download
-                    </button> */}
+                    </button>
                 </div>
             }
             {status === 'UPLOADING' &&
